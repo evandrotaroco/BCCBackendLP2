@@ -7,8 +7,11 @@
 //não esqueça de atualizar o arquivo package.json adicionando a chave "type":"module"
 import express from 'express';
 import rotaProduto from './Rotas/rotaProdutos.js';
+import rotaCategoria from './Rotas/rotaCategoria.js';
+import dotenv from 'dotenv';
 import cors from 'cors';
 
+dotenv.config();
 
 const host = "0.0.0.0"; //todas as placas de rede do computador que está executando a aplicação
 const porta = 3000;
@@ -28,6 +31,7 @@ app.use(express.static('./publico'));
 
 
 app.use('/produtos', rotaProduto);
+app.use("/categorias",rotaCategoria);
 //app.use('/clientes',rotaCliente);
 //app.use('/fornecedores', rotaFornecedor);
 //app.use('/usuarios', rotaUsuario);
