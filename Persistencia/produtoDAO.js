@@ -81,12 +81,12 @@ export default class ProdutoDAO {
         let sql = `
             SELECT * FROM produto p 
             INNER JOIN categoria c
-            ON p.cat_codigo = c.cat_codigo
+            ON p.fk_codigo_cat = c.codigo
         `;
         let parametros = [];// parametros tem que ser um array
         
         if(!isNaN(parseInt(termo))){
-            sql += " WHERE pro_codigo = ?";
+            sql += " WHERE prod_codigo = ?";
             parametros = [termo];
         }
 
