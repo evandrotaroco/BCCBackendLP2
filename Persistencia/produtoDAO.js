@@ -24,7 +24,7 @@ export default class ProdutoDAO {
                 fk_codigo_cat INT NOT NULL,
                 CONSTRAINT pk_produto PRIMARY KEY(prod_codigo),
                 CONSTRAINT fk_categoria FOREIGN KEY(fk_codigo_cat) REFERENCES categoria(codigo) 
-            )
+            );
         `;
             await conexao.execute(sql);
             await conexao.release();
@@ -77,20 +77,19 @@ export default class ProdutoDAO {
     async consultar(termo) {
         //resuperar as linhas da tabela produto e transformá-las de volta em produtos
         const conexao = await conectar();
-        let sql = "";
-        let parametros = [];
-        if (isNaN(parseInt(termo))) {
-            sql = `SELECT * FROM produto p
-                   INNER JOIN categoria c ON p.fk_codigo_cat = c.prod_codigo
-                   WHERE prod_descricao LIKE ?`;
-            parametros = ['%' + termo + '%'];
-        }
-        else {
-            sql = `SELECT * FROM produto p
-                   INNER JOIN categoria c ON p.fk_codigo_cat = c.codigo 
-                   WHERE prod_codigo = ?`
+        
+        let sql = `
+            SELECT * FROM produto p 
+            INNER JOIN categoria c
+            ON p.cat_codigo = c.cat_codigo
+        `;
+        let parametros = [];// parametros tem que ser um array
+        
+        if(!isNaN(parseInt(termo))){
+            sql += " WHERE pro_codigo = ?";
             parametros = [termo];
         }
+
         const [linhas, campos] = await conexao.execute(sql, parametros);
         let listaProdutos = [];
         for (const linha of linhas) {
@@ -110,6 +109,7 @@ export default class ProdutoDAO {
         await conexao.release();
         return listaProdutos;
     }
+
     async excluir(produto) {
         if (produto instanceof Produto) {
             const conexao = await conectar();
