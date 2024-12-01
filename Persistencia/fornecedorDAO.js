@@ -32,7 +32,7 @@ export default class FornecedorDAO {
         if (fornecedor instanceof Fornecedor) {
             const conexao = await conectar();
             const sql = `
-            INSERT INTO fornecedor (forn_nome, forn_cnpj, forn_telefone, forn_email, forn_endereco) 
+            INSERT INTO fornecedor (forn_nome, forn_cnpj, forn_email, forn_telefone, forn_endereco) 
             VALUES (?, ?, ?, ?, ?);
             `;
             const parametros = [
