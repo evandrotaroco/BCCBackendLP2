@@ -1,16 +1,14 @@
-import { Router } from "express";
-import UsuarioCtrl from "../Controle/usuarioCtrl.js";
+import { Router } from "express"; //micro-aplicação HTTP
+import FornecedorCtrl from "../Controle/usuarioCtrl.js";
 
-const usuarioCtrl = new UsuarioCtrl();
-const rota = Router();
+const usuCtrl = new UsuarioCtrl();
+const rotaUsuario = Router();
 
-rota
-.get("/", usuarioCtrl.consultar)
-.get("/:termo", usuarioCtrl.consultar)
-.post("/login", usuarioCtrl.login)
-.post("/", usuarioCtrl.gravar)
-.put("/", usuarioCtrl.atualizar)
-.patch("/", usuarioCtrl.atualizar)
-.delete("/", usuarioCtrl.excluir);
+rotaUsuario.post("/", usuCtrl.gravar);
+rotaUsuario.put("/:codigo", usuCtrl.editar);
+rotaUsuario.patch("/:codigo", usuCtrl.editar);
+rotaUsuario.delete("/:codigo", usuCtrl.excluir);
+rotaUsuario.get("/:codigo", usuCtrl.consultar);
+rotaUsuario.get("/", usuCtrl.consultar);
 
-export default rota;
+export default rotaUsuario;
