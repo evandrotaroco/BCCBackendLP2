@@ -85,7 +85,7 @@ export default class UsuarioCtrl{
         }
     }
     
-    atualizar(req, res)
+    editar(req, res)
     {
         res.type("application/json");
         if ((req.method == 'PUT' || req.method == 'PATCH') && req.is("application/json")){
@@ -100,7 +100,7 @@ export default class UsuarioCtrl{
                 privilegio)
             {
                 const usuario = new Usuario(nome, "", senha, senhaConfirmada, privilegio);
-                usuario.atualizar()
+                usuario.editar()
                 .then(()=>{
                     res.status(200).json({
                         "status":true,
