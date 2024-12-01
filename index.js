@@ -8,6 +8,9 @@
 import express from 'express';
 import rotaProduto from './Rotas/rotaProdutos.js';
 import rotaCategoria from './Rotas/rotaCategoria.js';
+import rotaCliente from './Rotas/rotaCliente.js';
+import rotaFornecedor from './Rotas/rotaFornecedor.js';
+import rotaUsuario from './Rotas/rotaUsuario.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
@@ -32,9 +35,9 @@ app.use(express.static('./publico'));
 
 app.use('/produtos', rotaProduto);
 app.use("/categorias",rotaCategoria);
-//app.use('/clientes',rotaCliente);
-//app.use('/fornecedores', rotaFornecedor);
-//app.use('/usuarios', rotaUsuario);
+app.use('/clientes',rotaCliente);
+app.use('/fornecedores', rotaFornecedor);
+app.use('/usuarios', rotaUsuario);
 
 /*app.get('/',(requisicao, resposta)=>{
     resposta.send('<h1>Página principal</h1>');
