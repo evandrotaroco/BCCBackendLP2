@@ -10,5 +10,6 @@ rotaUsuario.patch("/:codigo", usuCtrl.editar);
 rotaUsuario.delete("/:codigo", usuCtrl.excluir);
 rotaUsuario.get("/:codigo", usuCtrl.consultar);
 rotaUsuario.get("/", usuCtrl.consultar);
+rotaUsuario.post("/login", usuCtrl.login);
 
 export default rotaUsuario;
