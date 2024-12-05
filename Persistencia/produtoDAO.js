@@ -72,7 +72,7 @@ export default class ProdutoDAO {
                 produto.urlImagem,
                 produto.dataValidade,
                 produto.categoria.codigo,
-                produto.fornecedor.id,
+                produto.fornecedor.codigo,
                 produto.codigo
             ]; //dados do produto
             await conexao.execute(sql, parametros);
