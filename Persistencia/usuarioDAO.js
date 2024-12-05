@@ -61,10 +61,11 @@ export default class UsuarioDAO{
     async editar(usuario){
         if(usuario instanceof Usuario){
             const conexao = await conectar();
-            const sql = `UPDATE usuario SET senha=?, senhaConfirmada=?, privilegio=?
+            const sql = `UPDATE usuario SET email=?, senha=?, senhaConfirmada=?, privilegio=?
                 WHERE nome = ?
             `;
             let parametros = [
+                usuario.email,
                 usuario.senha,
                 usuario.senhaConfirmada,
                 usuario.privilegio,

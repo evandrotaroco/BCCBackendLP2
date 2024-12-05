@@ -4,10 +4,10 @@ export default class FornecedorCtrl {
     gravar(requisicao, resposta) {
         resposta.type("application/json");
         if (requisicao.method === "POST" && requisicao.is("application/json")) {
-            const { nome, cnpj, telefone, email, endereco } = requisicao.body;
+            const { nome, cnpj, email, telefone, endereco } = requisicao.body;
 
             if (nome && cnpj && email) {
-                const fornecedor = new Fornecedor(0, nome, cnpj, telefone, email, endereco);
+                const fornecedor = new Fornecedor(0, nome, cnpj, email, telefone, endereco);
 
                 fornecedor
                     .incluir()
@@ -42,10 +42,10 @@ export default class FornecedorCtrl {
         resposta.type("application/json");
         if ((requisicao.method === "PUT" || requisicao.method === "PATCH") && requisicao.is("application/json")) {
             const codigo = requisicao.params.codigo;
-            const { nome, cnpj, telefone, email, endereco } = requisicao.body;
+            const { nome, cnpj, email, telefone, endereco } = requisicao.body;
 
             if (codigo > 0 && nome && cnpj && email) {
-                const fornecedor = new Fornecedor(codigo, nome, cnpj, telefone, email, endereco);
+                const fornecedor = new Fornecedor(codigo, nome, cnpj, email, telefone, endereco);
 
                 fornecedor
                     .alterar()

@@ -15,8 +15,8 @@ export default class FornecedorDAO {
                 forn_codigo INT NOT NULL AUTO_INCREMENT,
                 forn_nome VARCHAR(100) NOT NULL,
                 forn_cnpj VARCHAR(18) NOT NULL UNIQUE,
-                forn_telefone VARCHAR(15),
                 forn_email VARCHAR(100) NOT NULL,
+                forn_telefone VARCHAR(15),
                 forn_endereco VARCHAR(200),
                 CONSTRAINT pk_fornecedor PRIMARY KEY (forn_codigo)
             );
@@ -32,14 +32,14 @@ export default class FornecedorDAO {
         if (fornecedor instanceof Fornecedor) {
             const conexao = await conectar();
             const sql = `
-            INSERT INTO fornecedor (forn_nome, forn_cnpj, forn_telefone, forn_email, forn_endereco) 
+            INSERT INTO fornecedor (forn_nome, forn_cnpj, forn_email, forn_telefone, forn_endereco) 
             VALUES (?, ?, ?, ?, ?);
             `;
             const parametros = [
                 fornecedor.nome,
                 fornecedor.cnpj,
-                fornecedor.telefone,
                 fornecedor.email,
+                fornecedor.telefone,
                 fornecedor.endereco
             ];
             const resultado = await conexao.execute(sql, parametros);
@@ -55,16 +55,16 @@ export default class FornecedorDAO {
             UPDATE fornecedor SET 
                 forn_nome = ?, 
                 forn_cnpj = ?, 
-                forn_telefone = ?, 
-                forn_email = ?, 
+                forn_email = ?,
+                forn_telefone = ?,
                 forn_endereco = ?
             WHERE forn_codigo = ?;
             `;
             const parametros = [
                 fornecedor.nome,
                 fornecedor.cnpj,
-                fornecedor.telefone,
                 fornecedor.email,
+                fornecedor.telefone,
                 fornecedor.endereco,
                 fornecedor.codigo
             ];
@@ -93,8 +93,8 @@ export default class FornecedorDAO {
                 linha["forn_codigo"],
                 linha["forn_nome"],
                 linha["forn_cnpj"],
-                linha["forn_telefone"],
                 linha["forn_email"],
+                linha["forn_telefone"],
                 linha["forn_endereco"]
             );
             listaFornecedores.push(fornecedor);

@@ -5,10 +5,11 @@ const usuCtrl = new UsuarioCtrl();
 const rotaUsuario = Router();
 
 rotaUsuario.post("/", usuCtrl.gravar);
-rotaUsuario.put("/:codigo", usuCtrl.editar);
-rotaUsuario.patch("/:codigo", usuCtrl.editar);
-rotaUsuario.delete("/:codigo", usuCtrl.excluir);
-rotaUsuario.get("/:codigo", usuCtrl.consultar);
+rotaUsuario.put("/:nome", usuCtrl.editar);
+rotaUsuario.patch("/:nome", usuCtrl.editar);
+rotaUsuario.delete("/:nome", usuCtrl.excluir);
+rotaUsuario.get("/:nome", usuCtrl.consultar);
 rotaUsuario.get("/", usuCtrl.consultar);
+rotaUsuario.post("/login", usuCtrl.login);
 
 export default rotaUsuario;
