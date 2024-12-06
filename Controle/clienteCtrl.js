@@ -4,10 +4,10 @@ export default class ClienteCtrl {
     gravar(requisicao, resposta) {
         resposta.type("application/json");
         if (requisicao.method === "POST" && requisicao.is("application/json")) {
-            const { nome, cpf, telefone, email, endereco } = requisicao.body;
+            const { nome, email, telefone, cpf, endereço } = requisicao.body;
 
             if (nome && cpf && email) {
-                const cliente = new Cliente(0, nome, cpf, telefone, email, endereco);
+                const cliente = new Cliente(0, nome, email, telefone, cpf, endereço);
 
                 cliente
                     .incluir()
@@ -42,10 +42,10 @@ export default class ClienteCtrl {
         resposta.type("application/json");
         if ((requisicao.method === "PUT" || requisicao.method === "PATCH") && requisicao.is("application/json")) {
             const codigo = requisicao.params.codigo;
-            const { nome, cpf, telefone, email, endereco } = requisicao.body;
+            const { nome, email, telefone, cpf, endereço } = requisicao.body;
 
             if (codigo > 0 && nome && cpf && email) {
-                const cliente = new Cliente(codigo, nome, cpf, telefone, email, endereco);
+                const cliente = new Cliente(codigo, nome, email, telefone, cpf, endereço);
 
                 cliente
                     .alterar()
