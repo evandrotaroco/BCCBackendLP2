@@ -1,12 +1,11 @@
 import ClienteDAO from "../Persistencia/clienteDAO.js";
 
 export default class Cliente {
-    // Atributos privados
     #codigo;
     #nome;
-    #cpf;
     #email;
     #telefone;
+    #cpf;
     #endereco;
 
     // Getters e Setters
@@ -58,29 +57,26 @@ export default class Cliente {
         this.#endereco = novoEndereco;
     }
 
-    // Construtor
-    constructor(codigo = 0, nome = "", cpf = "", email = "", telefone = "", endereco = "") {
+    constructor(codigo = 0, nome = "", email = "", telefone = "", cpf = "", endereco = "") {
         this.#codigo = codigo;
         this.#nome = nome;
-        this.#cpf = cpf;
         this.#email = email;
         this.#telefone = telefone;
+        this.#cpf = cpf;
         this.#endereco = endereco;
     }
 
-    // Override do método toJSON
     toJSON() {
         return {
             "codigo": this.#codigo,
             "nome": this.#nome,
-            "cpf": this.#cpf,
             "email": this.#email,
             "telefone": this.#telefone,
+            "cpf": this.#cpf,
             "endereco": this.#endereco
         };
     }
 
-    // Métodos para camada de persistência
     async incluir() {
         const clienteDAO = new ClienteDAO();
         await clienteDAO.incluir(this);
